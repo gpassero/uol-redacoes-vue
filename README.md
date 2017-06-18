@@ -15,5 +15,20 @@ amigável de consulta às redações da UOL com as seguintes funcionalidades:
 A interface criada poderá ser reutilizada para consulta a qualquer corpus de redações, desde que esteja estruturado
 em um arquivo JSON (formato a definir).
 
+# Instalação
+
+``` bash
+# Instalar dependências
+npm install
+
+# Rodar em um servidor de desenvolvimento com hot reload em localhost:8080
+npm run dev
+
+# Construir versão de produção com compactação
+npm run build
+```
+
+Para mais informações sobre como funciona o empacotamento, consulte a [documentação do vue-loader](http://vuejs.github.io/vue-loader).
+
 # Termos de uso
 Copyright UOL. Todos os direitos reservados. É permitida a reprodução apenas em trabalhos escolares, sem fins comerciais e desde que com o devido crédito ao UOL e aos autores.
