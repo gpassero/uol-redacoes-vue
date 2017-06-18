@@ -1,5 +1,8 @@
 <template>
     <v-card>
+        <v-card-title v-if="filterPrompt != false" class="blue darken-1 white--text mt-3">
+            Proposta: {{ filterPrompt.date | moment('YYYY/MM') }} - {{ filterPrompt.title }}
+        </v-card-title>
         <v-card-title>
             Redações
             <v-spacer></v-spacer>
@@ -65,7 +68,18 @@ export default {
     },
     computed: {
         items() {
-            return this.$store.state.essays;
+            if (this.filterPrompt == false) {
+                return this.$store.state.essays;
+            } else {
+                let essays = [];
+                for (let key in this.$store.state.essays) {
+                    let essay = this.$store.state.essays[key];
+                    if (essay.prompt.uid == this.filterPrompt.uid) {
+                        essays.push(essay);
+                    }
+                }
+                return essays;
+            }
         },
         prompts() {
             let prompts = {};
@@ -75,12 +89,18 @@ export default {
             }
             this.loading = false;
             return prompts;
-        }
+        },
+        filterPrompt() {
+            if (typeof(this.$route.query.filterPrompt) === 'undefined') {
+                return false;
+            }
+            return this.prompts[this.$route.query.filterPrompt];
+        },
     },
     methods: {
         getPrompt(essay) {
             if (typeof this.prompts[essay.prompt.uid] === 'undefined'){
-                return '';
+                return { date: '' };
             }
             return this.prompts[essay.prompt.uid];
         },

@@ -14,8 +14,8 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-toolbar>
-            <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <v-toolbar light>
+            <v-toolbar-side-icon light @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title v-text="title"></v-toolbar-title>
             <v-spacer></v-spacer>
         </v-toolbar>

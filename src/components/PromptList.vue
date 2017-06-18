@@ -18,6 +18,11 @@
                 <td>{{ props.item.date | moment('YYYY/MM') }}</td>
                 <td>{{ props.item.title }}</td>
                 <td>{{ props.item.description | makeBrief }}</td>
+                <td>
+                    <router-link :to="{ path: '/essay', query: { filterPrompt: props.item.uid } }">
+                        Ver redações
+                    </router-link>
+                </td>
             </template>
         </v-data-table>
     </v-card>
@@ -30,7 +35,8 @@ export default {
             headers: [
                 { text: 'Data', left: true, value: 'date' },
                 { text: 'Título', left: true, value: 'title' },
-                { text: 'Enunciado', left: true, value: 'description' }
+                { text: 'Enunciado', left: true, value: 'description' },
+                { text: 'Ações', sortable: false, value: 'actions' }
             ],
             search: '',
             pagination: {
@@ -42,7 +48,6 @@ export default {
     },
     computed: {
         items() {
-            console.log(this.$store.state.prompts)
             return this.$store.state.prompts;
         }
     }
