@@ -4,8 +4,11 @@ import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import Vuex from 'vuex'
 
+import VueMoment from 'vue-moment'
+
 import App from './App.vue'
 import routes from './routes'
+
 
 Vue.use(Vuetify)
 
@@ -33,9 +36,9 @@ new Vue({
   router,
   store,
   methods: {
-    load_data() {
+    loadData() {
       if (!this.$store.state.loaded) {
-        this.$resource('essays{/id}.json').get().then(response => {
+        this.$resource('essays{/id}.json?limitToFirst=50&orderBy="key"').get().then(response => {
           this.$store.state.essays = response.body
         }), response => {
           alert('Couldn\'t connect with server.')
@@ -50,6 +53,15 @@ new Vue({
     }
   },
   created() {
-    this.load_data()
+    this.loadData()
   }
 })
+
+Vue.filter('makeBrief', value => {
+  if (value.length < 100) {
+    return value
+  }
+  return value.substr(0, 100) + '...'
+})
+
+Vue.use(VueMoment)
