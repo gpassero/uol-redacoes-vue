@@ -40,8 +40,8 @@ export default {
             drawer: true,
             items: [
                 { icon: 'home', title: 'Início', to: '/' },
-                { icon: 'assignment', title: 'Redações', to: '/essay' },
-                { icon: 'book', title: 'Propostas', to: '/prompt' }
+                { icon: 'assignment', title: 'Redações', to: '/essays' },
+                { icon: 'book', title: 'Propostas', to: '/prompts' }
             ],
             title: 'UOL Redações Vue',
             footerText: 'uol-redacoes-vue'
@@ -51,5 +51,6 @@ export default {
 </script>
 
 <style lang="stylus">
-  @import './stylus/main'
+  @import './stylus/main';
+  @import './stylus/custom';
 </style>

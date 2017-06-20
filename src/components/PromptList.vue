@@ -18,9 +18,16 @@
                 <td>{{ props.item.date | moment('YYYY/MM') }}</td>
                 <td>{{ props.item.title }}</td>
                 <td>{{ props.item.description | makeBrief }}</td>
-                <td>
-                    <router-link :to="{ path: '/essay', query: { filterPrompt: props.item.uid } }">
-                        Ver redações
+                <td class="text-xs-center">
+                    <router-link :to="{ name: 'promptDetail', params: { uid: props.item.uid } }">
+                        <v-btn primary floating small light title="Ver proposta">
+                            <v-icon light>description</v-icon>
+                        </v-btn>
+                    </router-link>
+                    <router-link :to="{ path: '/essays', query: { filterPrompt: props.item.uid } }">
+                        <v-btn info floating small light title="Ver redações">
+                            <v-icon light>list</v-icon>
+                        </v-btn>
                     </router-link>
                 </td>
             </template>
@@ -36,14 +43,14 @@ export default {
                 { text: 'Data', left: true, value: 'date' },
                 { text: 'Título', left: true, value: 'title' },
                 { text: 'Enunciado', left: true, value: 'description' },
-                { text: 'Ações', sortable: false, value: 'actions' }
+                { text: 'Ações', left: true, value: 'actions' }
             ],
             search: '',
             pagination: {
                 rowsPerPage: 10,
                 descending: true
             },
-            loading: true
+            loading: false
         }
     },
     computed: {
