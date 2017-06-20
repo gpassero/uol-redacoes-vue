@@ -1,6 +1,6 @@
 <template>
     <v-card>
-        <v-card-title v-if="filterPrompt != false" class="blue darken-1 white--text mt-3">
+        <v-card-title v-if="filterPrompt != false" class="blue darken-1 white--text mt-3" v-show="!inline">
             Proposta: {{ filterPrompt.date | moment('YYYY/MM') }} - {{ filterPrompt.title }}
         </v-card-title>
         <v-card-title>
@@ -48,6 +48,16 @@
     import { mapState } from 'vuex';
 
     export default {
+        props: {
+            promptUid: {
+                type: String,
+                default: ''
+            },
+            inline: {
+                type: Boolean,
+                default: false
+            }
+        },
         data() {
             return {
                 headers: [
@@ -71,7 +81,7 @@
                 scoreColors: {
                     '2.0': 'green',
                     '1.5': 'blue',
-                    '1.0': 'yellow',
+                    '1.0': 'brown',
                     '0.5': 'orange',
                     '0.0': 'red'
                 }
@@ -98,7 +108,11 @@
             },
             filterPrompt() {
                 if (typeof this.$route.query.filterPrompt === 'undefined') {
-                    return false;
+                    if (this['promptUid'] == '') {
+                        return false;
+                    } else {
+                        return this.prompts[this['promptUid']];
+                    }
                 }
                 if (typeof this.prompts[this.$route.query.filterPrompt] === 'undefined') {
                     return false;

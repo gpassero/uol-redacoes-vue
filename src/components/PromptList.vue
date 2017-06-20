@@ -36,29 +36,29 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            headers: [
-                { text: 'Data', left: true, value: 'date' },
-                { text: 'Título', left: true, value: 'title' },
-                { text: 'Enunciado', left: true, value: 'description' },
-                { text: 'Ações', left: true, value: 'actions' }
-            ],
-            search: '',
-            pagination: {
-                rowsPerPage: 10,
-                descending: true
-            },
-            loading: false
-        }
-    },
-    computed: {
-        items() {
-            return this.$store.state.prompts;
+    export default {
+        data() {
+            return {
+                headers: [
+                    { text: 'Data', left: true, value: 'date' },
+                    { text: 'Título', left: true, value: 'title' },
+                    { text: 'Enunciado', left: true, value: 'description' },
+                    { text: 'Ações', left: true, value: 'actions' }
+                ],
+                search: '',
+                pagination: {
+                    rowsPerPage: 10,
+                    descending: true
+                },
+                loading: false
+            }
+        },
+        computed: {
+            items() {
+                return this.$store.state.prompts;
+            }
         }
     }
-}
 </script>
 
 
